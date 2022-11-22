@@ -5,6 +5,26 @@
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
+int get_number(void)
+{
+	int selNum=0;
+	
+	do
+	{
+		printf("select a number");
+		scanf("%d", &selNum);
+		fflush(stdin);
+		
+		if(bingo_checkNum(selNum)== BINGO_NUMSTATUS_ABSCENT)
+		{
+			printf("%i is not on the board! select other one.\n", selNum);
+		}
+	} while(selNum < 1 || selNum > N_SIZE*N_SIZE || bingo_checkNum(selNum) == BINGO_NUMSTATUS_ABSCENT);
+	
+	return selNum;
+}
+
+
 int main(int argc, char *argv[]) 
 {
 	srand((unsigned)time (NULL));
@@ -17,8 +37,10 @@ int main(int argc, char *argv[])
 	
 	bingo_init();
 	bingo_printBoard();
-	bingo_inputNum(9);
+	int selNum = get_number();
+	bingo_inputNum(selNum);
 	bingo_printBoard();
+	
 	
 	
 	//initialize bingo boards

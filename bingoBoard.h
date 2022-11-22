@@ -1,6 +1,7 @@
 #define N_SIZE     5 
 //매크로 정의 문구 
-
+#define BINGO_NUMSTATUS_ABSCENT   -1
+#define BINGO_NUMSTATUS_PRESENT    0
 
 
 
@@ -13,4 +14,8 @@ int bingo_countCompletedLine(void); //int로 변환한 값으로 출력하겠다. (void)=출�
 void bingo_inputNume(int sel); 
  
 void bingo_printBoard(void);
+
+int get_number(void);
+
+//int bingo_checkNum(int selNum);
 

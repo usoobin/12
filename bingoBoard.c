@@ -11,6 +11,18 @@ static int bingoBoard[N_SIZE][N_SIZE];
 static int numberStatus[N_SIZE*N_SIZE]; //숫자 위 
 
 
+int bingo_checkNum(int selNum)
+{
+	if(numberStatus[selNum -1] == BINGONUM_HOLE)  //이 보드가 값이 없다.
+	 {
+	 	return BINGO_NUMSTATUS_ABSCENT;
+	 }
+	 
+	 return BINGO_NUMSTATUS_PRESENT;
+	 
+}
+
+
 void bingo_printBoard(void)
 {
 	int i,j;
