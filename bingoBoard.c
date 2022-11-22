@@ -6,9 +6,14 @@
 # define BINGONUM_HOLE     -1
 //구멍이 뚫려있는 것을 탐지하는 매크로
 
+
  
 static int bingoBoard[N_SIZE][N_SIZE];
 static int numberStatus[N_SIZE*N_SIZE]; //숫자 위 
+
+
+	
+
 
 
 int bingo_checkNum(int selNum)
@@ -21,6 +26,27 @@ int bingo_checkNum(int selNum)
 	 return BINGO_NUMSTATUS_PRESENT;
 	 
 }
+
+/*int get_number(void)
+{
+	int selNum=0;
+	
+	do
+	{
+		printf("select a number");
+		scanf("%d", &selNum);
+		fflush(stdin);
+		
+		if(bingo_checkNum(selNum)== BINGO_NUMSTATUS_ABSCENT)
+		{
+			printf("%i is not on the board! select other one.\n", selNum);
+		}
+	} while(selNum < 1 || selNum > N_SIZE*N_SIZE || bingo_checkNum(selNum) == BINGO_NUMSTATUS_ABSCENT);
+	
+	return selNum;
+}*/
+
+
 
 
 void bingo_printBoard(void)
@@ -45,13 +71,13 @@ void bingo_printBoard(void)
 
 void bingo_init(void)
 {
-	int i, j, cnt = 1;
+	int i, j, selNum, cnt = 1;
 	
 	for(i=0; i<N_SIZE; i++)
 	{
 		for(j=0; j<N_SIZE; j++)
 		{
-			if(cnt ==15)
+			if(cnt == selNum)
 			{
 				bingoBoard[i][j] = BINGONUM_HOLE;
 				numberStatus[cnt-1] = i*N_SIZE + j ;
@@ -72,6 +98,64 @@ void bingo_init(void)
 
 int bingo_countCompletedLine(void)
 {
+	int i, j;
+	int cnt = 0;
+	int checkBingo;
+	
+	for(i=0; i<N_SIZE; i++)
+	{
+		if(bingoBoard[i][j] > 0)
+		{
+			checkBingo = 0;
+			break;
+		}
+	
+		if (checkBingo == 1)
+		{
+			cnt ++;
+		}
+	}
+	
+		for(j=0; j<N_SIZE; j++)
+	{
+		if(bingoBoard[i][j] > 0)
+		{
+			checkBingo = 0;
+			break;
+		}
+	
+		if (checkBingo == 1)
+		{
+			cnt ++;
+		}
+	}
+	
+	
+	checkBingo = 1;
+	for (i = 0; i<N_SIZE; i++)
+	{
+		if(bingoBoard[i][j] > 0)
+		{
+			checkBingo = 0;
+			break;
+		}
+	}
+	if(checkBingo == 1)
+		cnt ++;
+		
+		
+		
+	checkBingo = 1;
+	for (i = 0; i<N_SIZE; i++)
+	{
+		if(bingoBoard[i][N_SIZE - i-1] > 0)
+		{
+			checkBingo = 0;
+			break;
+		}
+	}
+	if(checkBingo == 1)
+		cnt ++;
 	
 }
  
@@ -87,6 +171,7 @@ void bingo_inputNum(int sel)
 	
 	bingoBoard[i][j] = BINGONUM_HOLE;
 
+ //numberStatus[sel-1] =  
 	
 }
 

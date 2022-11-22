@@ -1,4 +1,5 @@
-#define N_SIZE     5 
+#define N_SIZE     5
+#define N_LINE	   2 
 //매크로 정의 문구 
 #define BINGO_NUMSTATUS_ABSCENT   -1
 #define BINGO_NUMSTATUS_PRESENT    0
@@ -15,7 +16,7 @@ void bingo_inputNume(int sel);
  
 void bingo_printBoard(void);
 
-int get_number(void);
+//int get_number(void);
 
-//int bingo_checkNum(int selNum);
+int bingo_checkNum(int selNum);
 
